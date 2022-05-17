@@ -18,6 +18,7 @@ build-master:
   stage: build
   script:
     - git checkout master
+    - git pull
     - docker build --pull -t "${IMAGE_NAME}:latest" .
   only:
     - master
@@ -28,6 +29,7 @@ build:
   stage: build
   script:
     - git checkout ${CI_COMMIT_REF_NAME}
+    - git pull
     - docker build --pull -t "${IMAGE_NAME}:${CI_COMMIT_REF_NAME}" .
   except:
     - master
